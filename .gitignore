@@ -1,0 +1,7 @@
+data/
+src/checkpoints/
+src/downloads/
+src/models/
+src/runs_unet/
+src/songs_ytb/
+src/vocals/
