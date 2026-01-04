@@ -18,11 +18,11 @@ torch.cuda.set_device(GPU_ID)
 # =========================
 # Hyperparams
 # =========================
-BATCH_SIZE = 64
-LR = 1e-4
+BATCH_SIZE = 50
+LR = 1e-6
 NUM_ITERATIONS = 1000000
 
-DATA_DIR = Path.home() / "TP SON UNET" / "data" / "spec_data_linear_ytb"
+DATA_DIR = Path.home() / "TP SON UNET" / "data" / "spec_data_linear_ytb_not_resampled"
 FRAME_SIZE = 128
 STRIDE = 1
 
@@ -72,8 +72,8 @@ for mix, voc in loader:
     voc_pred = mask * mix
 
     # Loss
-    eps = 1e-8
-    loss = torch.mean(torch.abs(torch.log1p(voc_pred + eps) - torch.log1p(voc + eps)))
+
+    loss = torch.mean(torch.abs(voc_pred - voc))
 
     # Backward
     optimizer.zero_grad()
